@@ -1,0 +1,8 @@
+{
+  "name": "indom",
+  "version": "0.0.0",
+  "description": "InDom – The modern lightweight DOM library. Full release coming 15 Oct 2025.",
+  "license": "MIT",
+  "repository": "constcallid/indom",
+  "files": []
+}
