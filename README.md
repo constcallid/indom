@@ -1,33 +1,24 @@
 # InDom - 3.7KB modern JavaScript DOM library - powerful, easy and automates cleanup
-<style>
-.toc-list a
-{
-	display:block;
-	margin:2px 0px;
-	text-decoration:none;
-}
-</style>
-<div id="release">Full release coming 15 October 2025.</div>
-<div class=".toc-list">
-  <a href="#release">↑</a>
-</div>
-<pre style="background-color:#fff;color:#24292e"><code><span><span style="color:#6F42C1">	$1</span><span style="color:#24292E">(</span><span style="color:#032F62">'.example>div'</span><span style="color:#24292E">).</span><span style="color:#6F42C1">setStyle</span><span style="color:#24292E">(</span><span style="color:#032F62">'color'</span><span style="color:#24292E">, </span><span style="color:#032F62">'blue'</span><span style="color:#24292E">);</span></span>
-<span><span style="color:#6A737D">	/*</span></span>
-<span><span style="color:#6A737D">		If .example>div doesn't match any element, $1('.example>div') will return null.</span></span>
-<span><span style="color:#6A737D">		Attempting to call a method on null will result in a TypeError.</span></span>
-<span><span style="color:#6A737D">		If you want to avoid this error when the element is not found,</span></span>
-<span><span style="color:#6A737D">		use the optional chaining operator (?.) e.g.:</span></span>
-<span><span style="color:#6A737D">	*/</span></span>
-<span><span style="color:#6F42C1">	$1</span><span style="color:#24292E">(</span><span style="color:#032F62">'.example>div'</span><span style="color:#24292E">)?.</span><span style="color:#6F42C1">setStyle</span><span style="color:#24292E">(</span><span style="color:#032F62">'color'</span><span style="color:#24292E">, </span><span style="color:#032F62">'blue'</span><span style="color:#24292E">);</span></span>
-<span></span>
-<span><span style="color:#6F42C1">	$1</span><span style="color:#24292E">(</span><span style="color:#032F62">'.example>div'</span><span style="color:#24292E">).</span><span style="color:#6F42C1">onClick</span><span style="color:#24292E">(</span><span style="color:#E36209">n</span><span style="color:#D73A49"> =></span><span style="color:#24292E"> {</span></span>
-<span><span style="color:#6A737D">		//n here is the InDom object</span></span>
-<span><span style="color:#24292E">		n.</span><span style="color:#6F42C1">addClass</span><span style="color:#24292E">(</span><span style="color:#032F62">'clicked'</span><span style="color:#24292E">).</span><span style="color:#6F42C1">setStyle</span><span style="color:#24292E">({ </span><span style="color:#032F62">'color'</span><span style="color:#24292E">: </span><span style="color:#032F62">'red'</span><span style="color:#24292E">, </span><span style="color:#032F62">'font-size'</span><span style="color:#24292E">: </span><span style="color:#032F62">'120%'</span><span style="color:#24292E"> });</span></span>
-<span><span style="color:#24292E">	});</span></span>
-<span></span>
-<span><span style="color:#6A737D">	// Set style to the first 'span', of the first '.example>div'</span></span>
-<span><span style="color:#6F42C1">	$1</span><span style="color:#24292E">(</span><span style="color:#032F62">'span'</span><span style="color:#24292E">, </span><span style="color:#6F42C1">$1</span><span style="color:#24292E">(</span><span style="color:#032F62">'.example>div'</span><span style="color:#24292E">)).</span><span style="color:#6F42C1">setStyle</span><span style="color:#24292E">(</span><span style="color:#032F62">'color'</span><span style="color:#24292E">, </span><span style="color:#032F62">'green'</span><span style="color:#24292E">);</span></span>
-<span></span>
-<span><span style="color:#6A737D">	//or:</span></span>
-<span><span style="color:#D73A49">	const</span><span style="color:#005CC5"> div</span><span style="color:#D73A49"> =</span><span style="color:#6F42C1"> $1</span><span style="color:#24292E">(</span><span style="color:#032F62">'.example>div'</span><span style="color:#24292E">);</span></span>
-<span><span style="color:#6F42C1">	$1</span><span style="color:#24292E">(</span><span style="color:#032F62">'span'</span><span style="color:#24292E">, div).</span><span style="color:#6F42C1">setStyle</span><span style="color:#24292E">(</span><span style="color:#032F62">'color'</span><span style="color:#24292E">, </span><span style="color:#032F62">'green'</span><span style="color:#24292E">);</span></span></code></pre>
+<div style="height:30px;"></div>
+
+- <span style="color:#091987;text-shadow:0px 0px 0.5px;">**Lightweight:**</span> Only **3.7KB gzipped** – adds minimal overhead.<div style="margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #c1c1c1;"></div>
+- <span style="color:#091987;text-shadow:0px 0px 0.5px;">**Complete Innovative DOM Solution:**</span> Comprehensive API with single-instance objects per element – eliminating duplication and boosting performance for element selection, manipulation, traversal, event handling and more. 
+<div style="margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #c1c1c1;"></div>
+- <span style="color:#091987;text-shadow:0px 0px 0.5px;">**Modern JavaScript:**</span> Built with ES2022, empowers clean and maintainable code.
+<div style="margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #c1c1c1;"></div>
+- <span style="color:#091987;text-shadow:0px 0px 0.5px;">**Powerful Cleanup:**</span> State (event listeners, data, etc.) **automatically** removed when elements are destroyed 
+<div style="margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #c1c1c1;"></div>
+- <span style="color:#091987;text-shadow:0px 0px 0.5px;">**Stack Agnostic:**</span> Leak-proof by design, no need for manual cleanup to avoid memory leaks. Set events with InDom, remove elements with any library (an older JS DOM lib, a modern large JS framework, etc.) – cleanup still happens automatically
+<div style="margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #c1c1c1;"></div>
+- <span style="color:#091987;text-shadow:0px 0px 0.5px;">**Fast & Dependency-Free:**</span> Optimized for performance with zero external dependencies.
+<div style="margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #c1c1c1;"></div>
+- <span style="color:#091987;text-shadow:0px 0px 0.5px;">**Modern Browser Support:**</span> Compatible with all modern browsers (see browser support for more).
+<div style="margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #c1c1c1;"></div>
+- <span style="color:#091987;text-shadow:0px 0px 0.5px;">**Powerful Fields Handling:**</span> Advanced form field handling with automatic type normalization and validation.
+<div style="margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #c1c1c1;"></div>
+- <span style="color:#091987;text-shadow:0px 0px 0.5px;">**Multiple Formats:**</span> Distributed in Plain JavaScript, ESM modules, and TypeScript formats.
+<div style="margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #c1c1c1;"></div>
+- <span style="color:#091987;text-shadow:0px 0px 0.5px;">**TypeScript Ready:**</span> Includes built-in types (ES2022 compatible) available in `/src`.
+<div style="margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #c1c1c1;"></div>
+
+<div style="height:30px;"></div>
