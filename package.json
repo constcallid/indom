@@ -1,0 +1,69 @@
+{
+  "name": "indom",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "description": "InDom - 3.8 modern JavaScript DOM library - powerful, easy and automates cleanup",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/constcallid/indom.git"
+  },
+  "main": "./dist/indom.js",
+  "module": "./dist/indom.esm.js",
+  "types": "./dist/indom.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/indom.d.ts",
+      "import": "./dist/indom.esm.js",
+      "require": "./dist/indom.js",
+      "default": "./dist/indom.esm.js"
+    }
+  },
+  "sideEffects": true,
+  "unpkg": "./dist/indom.min.esm.js",
+  "jsdelivr": "./dist/indom.min.esm.js",
+  "files": [
+    "dist/*.js",
+    "dist/*.mjs",
+    "dist/*.map",
+    "dist/*.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+	"dom",
+	"dom-library",
+	"dom-manipulation", 
+	"dom-helper",
+	"dom-utils",
+	"dom-events",
+	"event-handling",
+	"auto-cleanup",
+	"memory-leak-free",
+	"lightweight",
+	"frontend",
+	"es2022",
+	"typescript",
+	"esm",
+	"umd",
+	"spa",
+	"pwa",
+	"javascript",
+	"no-dependencies"
+  ],
+  "author": "Constantine Callid <constantinecallid@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/constcallid/indom/issues"
+  },
+  "homepage": "https://github.com/constcallid/indom#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

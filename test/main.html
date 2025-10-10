@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Common tests and examples for InDom</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description"
+	content="Common tests and examples for InDom - 3.5KB modern JavaScript DOM library - powerful, easy and automates cleanup" />
+<meta name="viewport" content="width=device-width">
+<script src="../dist/indom.js"></script>
+<script src="main.js"></script>
+</head>
+<body>
+	<div class="example">
+		<div>
+			<span class="test">this is a first test</span>
+		</div>
+		<div class="b">
+			<div class="test">this is a second test</div>
+		</div>
+		<div id="something">
+			<div class="c1">.c1</div>
+			<div class="c2">.c2</div>
+		</div>
+		<span>span 1</span>
+		<span>span 2</span>
+	</div>
+	<div class="example">
+		<span>span 1</span>
+		<span>span 2</span>
+	</div>
+	<div id="test">test with id</div>
+	<div id="img-container">
+		<div class="btn">load img</div>
+	</div>
+	<div class="img-example-2">
+	</div>
+	<div class="input-examples">
+		<div><input type="text" name="username" value=""></div>
+		<div><textarea name="message"></textarea></div>
+		<div>
+			<select name="color">
+				<option value="red">Red</option>
+				<option value="green" selected>Green</option>
+				<option value="blue">Blue</option>
+			</select>
+		</div>
+		<div>	
+			<select name="size" multiple>
+				<option value="s" selected>Small</option>
+				<option value="m">Medium</option>
+				<option value="l">Large</option>
+			</select>
+		</div>
+		<div>
+			<input type="radio" name="payment" value="credit" id="credit">
+			<label for="credit">Credit Card</label>
+			<input type="radio" name="payment" value="debit" id="debit">
+			<label for="debit">Debit Card</label>
+			<input type="radio" name="payment" value="paypal" id="paypal">
+			<label for="paypal">PayPal</label>
+		</div>
+		<div>
+			<input type="checkbox" name="features" value="wifi" id="wifi">
+			<label for="wifi">WiFi</label>
+			<input type="checkbox" name="features" value="bluetooth" id="bluetooth">
+			<label for="bluetooth">Bluetooth</label>		
+			<input type="checkbox" name="features" value="gps" id="gps">
+			<label for="gps">GPS</label>		
+		</div>
+		<div>
+			<input type="file" name="documents" multiple accept=".pdf,.doc,.docx">
+		</div>
+	</div>
+	<div class="input-examples-2">
+		<div>
+			<input type="checkbox" name="features" value="wifi" id="wifi2" checked>
+			<label for="wifi2">WiFi</label>
+			<input type="checkbox" name="features" value="bluetooth" id="bluetooth2">
+			<label for="bluetooth2">Bluetooth</label>		
+			<input type="checkbox" name="features" value="gps" id="gps2" checked>
+			<label for="gps2">GPS</label>		
+		</div>
+	</div>	
+	<div class="input-examples-3">
+		<div><input type="text" name="name_34" value=""><input type="text" name="age_34" value=""></div>
+		<div><input type="text" name="name_65" value=""><input type="text" name="age_65" value=""></div>
+	</div>		
+	
+	<div id="menu"><span class="btn">menu btn</span></div>
+	<div id="search"><span class="btn">search btn</span></div>
+	
+	<div class="sibling-example">
+		<div class="a">.a test</div>
+		<div>test</div>
+		<div class="c">.c test</div>
+	</div>
+	<ul class="example-1"><li>li 1</li><li>li 2</li></ul>
+	<div class="example-2"><span>span 1</span><div>div 1</div><div>div 2</div></div>
+	
+	<div id="mainMenu">
+		<div>1 #menu>div</div>
+		<div>2 #menu>div</div>
+	</div>
+	<div class="menu-icon">1 .catIcon</div>
+	<div class="menu-icon">2 .catIcon</div>
+	
+	<div id="categories">
+		<div><span>cat with 1 span childs</span></div>
+		<div><span>cat </span><span>with 3 </span><span>span childs</span></div>
+		<div><span>cat </span><span>with 2 span childs</span></div>
+	</div>
+</body>
+</html>
