@@ -30,7 +30,7 @@
 
 <hr>
 
-### [Getting Started](#link)
+### [Getting Started](#getting-started-1)
 
 <hr>
 
@@ -71,11 +71,11 @@
 
 <table>
 	<tr><th>Distribution Format</th><th>File</th><th>Description</th><th>jsDelivr</th><th>unpkg</th></tr>
-	<tr><td>Plain JavaScript</td><td>dist/indom.js</td><td>library build</td><td><a href="https://www.jsdelivr.com">link</a></td><td><a href="https://www.unpkg.com">link</a></td></tr>
-	<tr><td>Plain JavaScript</td><td>dist/indom.min.js</td><td>minified build</td><td><a href="https://www.jsdelivr.com">link</a></td><td><a href="https://www.unpkg.com">link</a></td></tr>
-	<tr><td>ES Modules</td><td>dist/indom.esm.js</td><td>library build</td><td><a href="https://www.jsdelivr.com">link</a></td><td><a href="https://www.unpkg.com">link</a></td></tr>
-	<tr><td>ES Modules</td><td>dist/indom.esm.min.js</td><td>minified build</td><td><a href="https://www.jsdelivr.com">link</a></td><td><a href="https://www.unpkg.com">link</a></td></tr>	
-	<tr><td>TypeScript</td><td>dist/indom.d.ts</td><td>type definitions</td><td><a href="https://www.jsdelivr.com">link</a></td><td><a href="https://www.unpkg.com">link</a></td></tr>
+	<tr><td>Plain JavaScript</td><td>dist/indom.js</td><td>library build</td><td><a href="https://cdn.jsdelivr.net/npm/indom@latest/dist/indom.js">link</a></td><td><a href="https://unpkg.com/indom/dist/indom.js">link</a></td></tr>
+	<tr><td>Plain JavaScript</td><td>dist/indom.min.js</td><td>minified build</td><td><a href="https://cdn.jsdelivr.net/npm/indom@latest/dist/indom.min.js">link</a></td><td><a href="https://unpkg.com/indom/dist/indom.min.js">link</a></td></tr>
+	<tr><td>ES Modules</td><td>dist/indom.esm.js</td><td>library build</td><td><a href="https://cdn.jsdelivr.net/npm/indom@latest/dist/indom.esm.js">link</a></td><td><a href="https://unpkg.com/indom/dist/indom.esm.js">link</a></td></tr>
+	<tr><td>ES Modules</td><td>dist/indom.esm.min.js</td><td>minified build</td><td><a href="https://cdn.jsdelivr.net/npm/indom@latest/dist/indom.esm.min.js">link</a></td><td><a href="https://unpkg.com/indom/dist/indom.esm.min.js">link</a></td></tr>	
+	<tr><td>TypeScript</td><td>dist/indom.d.ts</td><td>type definitions</td><td><a href="https://cdn.jsdelivr.net/npm/indom@latest/dist/indom.d.ts">link</a></td><td><a href="https://unpkg.com/indom/dist/indom.d.ts">link</a></td></tr>
 	<tr><td>TypeScript</td><td>src/indom.ts</td><td>TypeScript source</td><td></td><td></td></tr>	
 </table>
 
@@ -1712,7 +1712,7 @@ InDom works directly in any modern browser — no bundler or build process is re
 ```html
 <script src="./js/indom.min.js"></script>
 <!-- or via CDN -->
-<script src="https://cdn.jsdelivr.net/npm/indom/dist/indom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/indom@latest/dist/indom.min.js"></script>
 ```
 Your own scripts can then use InDom immediately, or you can wrap logic in InDom.onReady() to ensure the DOM is fully loaded.
 

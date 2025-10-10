@@ -1,4 +1,4 @@
-/*! InDom v1.0.0 MIT */
+/*! InDom v1.0.1 MIT */
 /**
  * Callback type returned by .on()/.onRemove() and accepted by .off()
  */
