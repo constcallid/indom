@@ -29,6 +29,11 @@ InDom.onReady(() => {
 
 	const getExample = () => {
 
+		const menuDivs = $a('#menu>div');
+		menuDivs.onEnter(n => n.addClass('on'));
+		// In the above n is each InDom object
+		menuDivs.onLeave(n => n.removeClass('on'));
+
 		// Set style on every '.example'
 		$a('.example').setStyle('color', 'blue');
 
@@ -36,6 +41,9 @@ InDom.onReady(() => {
 		$a('.example>span').onClick(n => {
 			n.setStyle('color', 'green');
 		});
+		
+		// The same, written as a single-line arrow function: 
+		$a('.example>span').onClick(n => n.setStyle('color', 'green'));
 
 		const example1 = $1('.example');
 		//Set data 'init': 1 on direct children 'div' of the first '.example'
@@ -891,9 +899,7 @@ InDom.onReady(() => {
 		};
 
 		// usage example 
-		$1(".example>div").onClick(() => {
-			$n(document).scrollTop(100, true);
-		});
+		$1(".example>div").onClick(() => $n(document).scrollTop(100, true));
 
 		// - Modify 
 		// Modify InDom with custom onClick method that throttles clicks and touchstart

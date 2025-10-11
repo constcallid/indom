@@ -157,6 +157,9 @@ $a('.example').setStyle('color', 'blue');
 $a('.example>span').onClick(n => {
 	n.setStyle('color','green');
 });
+		
+// The same, written as a single-line arrow function: 
+$a('.example>span').onClick(n => n.setStyle('color', 'green'));
 
 const example1 = $1('.example');
 //Set data 'init': 1 on direct children 'div' of the first '.example'
@@ -1838,9 +1841,7 @@ InDom.prototype.scrollTop = function(y, smooth) {
 };
 
 // usage example 
-$1(".example>div").onClick(() => {
-	$n(document).scrollTop(100, true);
-});
+$1(".example>div").onClick(() => $n(document).scrollTop(100, true));
 ```
 
 **Modify Example:**

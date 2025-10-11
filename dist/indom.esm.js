@@ -1,4 +1,4 @@
-/*! InDom v1.0.1 MIT */
+/*! InDom v1.0.2 MIT */
 
 /**
  * Array-like container for bulk DOM element operations.
