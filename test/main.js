@@ -1,5 +1,6 @@
-/// <reference path='./indom.js' />
+/// <reference path='../dist/indom.js' />
 const _l = msg => console.log(msg);
+
 
 InDom.onReady(() => {
 
@@ -41,7 +42,7 @@ InDom.onReady(() => {
 		$a('.example>span').onClick(n => {
 			n.setStyle('color', 'green');
 		});
-		
+
 		// The same, written as a single-line arrow function: 
 		$a('.example>span').onClick(n => n.setStyle('color', 'green'));
 
@@ -220,8 +221,6 @@ InDom.onReady(() => {
 	}
 
 	const getValuesExample = () => {
-
-
 
 		const btn = $n('<div>log field values</div>');
 		$1('body').append(btn);
@@ -1020,6 +1019,45 @@ InDom.onReady(() => {
 	//arrayMethodsExample();
 	//inheritedMethods();
 	//extendExample();
+
+
+	const checkAutoCleanup = () => {
+		console.log("InDom test");
+		const html50 = '<div></div>'.repeat(50);
+		const rounds = 20;
+		let count = 0;
+		const hold = new Map();
+
+		function cycle() {
+			document.getElementById('test').innerHTML = html50;
+
+			$a('#test>div').onClick(n => {
+				n.setData('testLeak', new Array(100 * 1024).fill('x'));
+				hold.set(n, true);
+			});
+
+			$a('#test>div').onClick();
+
+			// clean the inner html of #test
+			document.getElementById('test').innerHTML = '';
+
+
+			// wait long enough for a major GC 
+			setTimeout(() => {
+				const used = performance.memory.usedJSHeapSize;
+				console.log(`round ${count}  post-GC heap ${(used / 1024 / 1024).toFixed(2)} MB`);
+
+				if (++count < rounds) {
+					cycle();// next loop
+				} else {
+					console.log('finished');
+				}
+			}, 1000);
+		}
+
+		cycle();
+	}
+	//checkAutoCleanup();
 
 
 });

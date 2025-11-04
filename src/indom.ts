@@ -1,4 +1,4 @@
-/*! InDom v1.0.2 MIT */
+/*! InDom v1.0.3 MIT */
 
 /** 
  * Callback type returned by .on()/.onRemove() and accepted by .off()
@@ -455,7 +455,7 @@ export class InDomArray extends Array<InDom> {
 	 */
 	#eachSetter(method: keyof InDom, args: any[]): this {
 		for (let i = 0; i < this.length; i++) {
-		  (this[i][method] as any)(...args);
+			(this[i][method] as any)(...args);
 		}
 		return this;
 	}
@@ -471,9 +471,9 @@ export class InDomArray extends Array<InDom> {
 			throw new Error('DOM content must be loaded first for this operation');
 		}
 		for (let i = 0; i < this.length; i++) {
-		  if (!this[i].el().isConnected) {
-		    throw new Error('Element must be connected to DOM for this operation', { cause: this[i].el() });
-		  }
+			if (!this[i].el().isConnected) {
+				throw new Error('Element must be connected to DOM for this operation', { cause: this[i].el() });
+			}
 		}
 	}
 }
@@ -691,11 +691,7 @@ export class InDom {
 			if (container instanceof InDom) {
 				container = container.el() as ParentNode;
 			}
-			selector = selector.trim();
-			const l = selector[0];
-			if (l === '>' || l === '~' || l === '+') {
-				selector = ':scope ' + selector;
-			}
+			selector = InDom.#fixSelector(selector);
 		} else {
 			container = document;
 		}
@@ -722,11 +718,7 @@ export class InDom {
 			if (container instanceof InDom) {
 				container = container.el() as ParentNode;
 			}
-			selector = selector.trim();
-			const l = selector[0];
-			if (l === '>' || l === '~' || l === '+') {
-				selector = ':scope ' + selector;
-			}
+			selector = InDom.#fixSelector(selector);
 		} else {
 			container = document;
 		}
@@ -920,6 +912,30 @@ export class InDom {
 
 		// Otherwise, return the fragment
 		return frag;
+	}
+
+	/**
+	 * Prepend :scope to relative combinators (> , ~ , +) if needed
+	 * @private
+	 * @param {string} selector - Raw CSS selector
+	 * @returns {string} - Selector safe for element-rooted queries
+	 */
+	static #fixSelector(selector: string): string {
+		const commaPos = selector.indexOf(',');
+		//single selector
+		if (commaPos === -1) {
+			selector = selector.trim();
+			const c = selector[0];
+			return (c === '>' || c === '~' || c === '+') ? ':scope ' + selector : selector;
+		}
+		// multiple selectors
+		const parts = selector.split(',');
+		for (let i = 0; i < parts.length; i++) {
+			const s = parts[i].trim();
+			const c = s[0];
+			parts[i] = (c === '>' || c === '~' || c === '+') ? ':scope ' + s : s;
+		}
+		return parts.join(',');
 	}
 
 	/**

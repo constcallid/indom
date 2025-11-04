@@ -1931,6 +1931,9 @@ exampleDivs.removeOnClick(clickHandlers);
 
 ### Contribute
 
+**We welcome and encourage community participation!** Visit the [InDom GitHub Discussions](https://github.com/constcallid/indom/discussions) to ask questions, share ideas, suggest new features for future versions, or express interest in contributing directly to the project's development and maintenance. Whether you're a user seeking help, an enthusiast with improvement ideas, or a developer looking to volunteer, your involvement helps shape InDom's future.
+
+
 **Do you like InDom? Help others discover it!** 
 
 There are many ways to contribute to the InDom community and help the library grow:

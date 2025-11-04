@@ -1,4 +1,4 @@
-/*! InDom v1.0.2 MIT */
+/*! InDom v1.0.3 MIT */
 
 /**
  * Array-like container for bulk DOM element operations.
@@ -625,13 +625,8 @@ class InDom {
 			if (container instanceof InDom) {
 				container = container.el();
 			}
-			selector = selector.trim();
-			const l = selector[0];
-			if (l == ">" || l == "~" || l == "+") {
-				selector = ":scope " + selector;
-			}
-		}
-		else {
+			selector = InDom.#fixSelector(selector);
+		} else {
 			container = document;
 		}
 
@@ -657,11 +652,7 @@ class InDom {
 			if (container instanceof InDom) {
 				container = container.el();
 			}
-			selector = selector.trim();
-			const l = selector[0];
-			if (l == ">" || l == "~" || l == "+") {
-				selector = ":scope " + selector;
-			}
+			selector = InDom.#fixSelector(selector);
 		}
 		else {
 			container = document;
@@ -838,6 +829,30 @@ class InDom {
 
 		// Otherwise, return the fragment
 		return frag;
+	}
+
+	/**
+	 * Prepend :scope to relative combinators (> , ~ , +) if needed
+	 * @private
+	 * @param {string} selector - Raw CSS selector
+	 * @returns {string} - Selector safe for element-rooted queries
+	 */
+	static #fixSelector(selector) {
+		const commaPos = selector.indexOf(',');
+		//single selector
+		if (commaPos === -1) {
+			selector = selector.trim();
+			const c = selector[0];
+			return (c === '>' || c === '~' || c === '+') ? ':scope ' + selector : selector;
+		}
+		// multiple selectors
+		const parts = selector.split(',');
+		for (let i = 0; i < parts.length; i++) {
+			const s = parts[i].trim();
+			const c = s[0];
+			parts[i] = (c === '>' || c === '~' || c === '+') ? ':scope ' + s : s;
+		}
+		return parts.join(',');
 	}
 
 	/**
@@ -1784,6 +1799,8 @@ class InDom {
 		}
 		return null;
 	}
+
+
 
 	/**
 	 * Destroys the current InDom instance: aborts listeners, clears data, runs `onRemove` hooks,
