@@ -35,3 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - More tests for new geometry method (and npm package fix) 
 
+## [1.0.6] - 2025-03-05
+### Changed
+- Npm publishing issues #1
+

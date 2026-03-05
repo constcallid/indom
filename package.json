@@ -1,6 +1,6 @@
 {
   "name": "indom",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "commonjs",
   "description": "InDom - 3.8 modern JavaScript DOM library - powerful, easy and automates cleanup",
   "license": "MIT",
