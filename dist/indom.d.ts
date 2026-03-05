@@ -1,4 +1,4 @@
-/*! InDom v1.0.3 MIT */
+/*! InDom v1.0.4 MIT */
 /**
  * Callback type returned by .on()/.onRemove() and accepted by .off()
  */
@@ -758,6 +758,7 @@ export declare class InDom {
      *
      * @returns {DOMRect} Object with left / x, top / y, width, height, right, bottom
      * @throws {Error} If the underlying element has been removed
+	 * @throws {Error} if the underlying element is not connected to the document , or document not yet loaded
      */
     getBox(): DOMRect;
     /**
@@ -765,6 +766,7 @@ export declare class InDom {
      *
      * @returns {DOMRect} Object with left / x, top / y, width, height, right, bottom
      * @throws {Error} If the underlying element has been removed
+	 * @throws {Error} if the underlying element is not connected to the document , or document not yet loaded
      */
     getOuterBox(): DOMRect;
     /**
@@ -773,8 +775,18 @@ export declare class InDom {
      *
      * @returns {DOMRect} Object with left / x, top / y, width, height, right, bottom
      * @throws {Error} If the underlying element has been removed
+	 * @throws {Error} if the underlying element is not connected to the document , or document not yet loaded
      */
     getRelativeBox(): DOMRect;
+	/**
+	 * Returns a DOMRect with page-relative coordinates (viewport rect plus window scroll),
+	 * left/top are measured from the document origin and root borders are excluded.
+	 * 
+	 * @returns {DOMRect} Object with left / x, top / y, width, height, right, bottom.
+	 * @throws {Error} If the underlying element has been removed
+	 * @throws {Error} if the underlying element is not connected to the document , or document not yet loaded
+	 */
+	getOffsetBox(): DOMRect;	
     /**
      * Returns the current value of the element, normalized for its type.
      *

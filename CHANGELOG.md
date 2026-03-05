@@ -23,3 +23,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - link to InDom GitHub Discussions in README.md Contribute section 
+
+## [1.0.4] - 2026-03-05
+### Added
+- `getOffsetBox` method that returns a `DOMRect` with page-relative coordinates (viewport rect plus window scroll, root borders excluded).
+
+### Changed
+- Geometry methods (`getBox`, `getOuterBox`, `getRelativeBox`, `getOffsetBox`) now require the underlying element to be connected to the DOM, they throw Error otherwise.
+

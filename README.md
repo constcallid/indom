@@ -46,7 +46,7 @@
 
 [setData](#setdatakey-value) | [getData](#getdatakey) | [hasData](#hasdatakey) | [removeData](#removedatakey) | [setAttr](#setattrkey-value) | [getAttr](#getattrkey) | [hasAttr](#hasattrkey) | [removeAttr](#removeattrkey)
 
-[getBox](#getbox) | [getOuterBox](#getouterbox) | [getRelativeBox](#getrelativebox) | [addClass](#addclassnames) | [hasClass](#hasclassname) | [removeClass](#removeclassnames)  | [setStyle](#setstylepropertyormap-value) | [getStyle](#getstyleproperties)
+[getBox](#getbox) | [getOuterBox](#getouterbox) | [getRelativeBox](#getrelativebox) | [getOffsetBox](#getoffsetbox) | [addClass](#addclassnames) | [hasClass](#hasclassname) | [removeClass](#removeclassnames)  | [setStyle](#setstylepropertyormap-value) | [getStyle](#getstyleproperties)
 
 [InDomArray inherited methods](#indomarray-inherited-methods) | [each](#eachfn) | [filter](#filterselectororfn)
 <hr>
@@ -1362,6 +1362,7 @@ Returns a DOMRect with the underlying element’s viewport-relative bounding box
 
 **Throws:**  
 - `Error` - If the underlying element has been removed 
+- `Error` - If the underlying element is not connected to the document
 
 **Examples:**
 ```js
@@ -1399,6 +1400,7 @@ Returns a DOMRect that expands the underlying element’s bounding box by its ma
 
 **Throws:**  
 - `Error` - If the underlying element has been removed 
+- `Error` - If the underlying element is not connected to the document
 
 **Examples:**
 ```js
@@ -1449,6 +1451,7 @@ Returns a DOMRect with coordinates relative to the underlying element’s offset
 
 **Throws:**  
 - `Error` - If the underlying element has been removed 
+- `Error` - If the underlying element is not connected to the document
 
 **Examples:**
 ```js
@@ -1482,6 +1485,35 @@ console.log(JSON.stringify(innerDiv.getRelativeBox()));
 //DOMRect {"x":30,"y":10,"width":30,"height":50,"top":10,"right":60,
 //"bottom":60,"left":30}
 // red innerDiv: positioned inside blue div; coords are relative to blue’s padding box
+```
+
+[↑TOC](#table-of-contents)
+
+### `.getOffsetBox()`
+**Available on:** `InDom`
+
+Returns a DOMRect with document / page-relative coordinates: left and top are measured from the top-left corner of the document.
+
+**Returns:** {DOMRect} - Native object with left / x, top / y, width, height, right, bottom.
+
+**Throws:**  
+- `Error` - If the underlying element has been removed  
+- `Error` - If the underlying element is not connected to the document
+
+**Examples:**
+```js
+const div = $n('<div></div>');
+div.setStyle({
+	position: 'absolute',
+	top: '100px',
+	left: '120px',
+	width: '80px',
+	height: '60px'
+});
+$1('body').append(div);
+
+console.log(JSON.stringify(div.getOffsetBox()));
+//DOMRect {"x":120,"y":100,"width":80,"height":60,"top":100,"right":200,"bottom":160,"left":120}
 ```
 
 [↑TOC](#table-of-contents)

@@ -1,4 +1,4 @@
-/*! InDom v1.0.3 MIT */
+/*! InDom v1.0.4 MIT */
 
 /** 
  * Callback type returned by .on()/.onRemove() and accepted by .off()
@@ -79,7 +79,7 @@ export class InDomArray extends Array<InDom> {
 	 * @throws {Error} If any element is disconnected or DOM not ready
 	 */
 	setData(k: any, v: any): this {
-		this.#isConnected();
+		this.#ensureConnected();
 		return this.#eachSetter('setData', [k, v]);
 	}
 
@@ -93,7 +93,7 @@ export class InDomArray extends Array<InDom> {
 	 * @throws {Error} If any element is disconnected or DOM not ready
 	 */
 	removeData(k: any): this {
-		this.#isConnected();
+		this.#ensureConnected();
 		return this.#eachSetter('removeData', [k]);
 	}
 
@@ -214,7 +214,7 @@ export class InDomArray extends Array<InDom> {
 		fn?: (n: InDom, e: Event) => void,
 		opts?: AddEventListenerOptions
 	): InDomHandler[] {
-		this.#isConnected();
+		this.#ensureConnected();
 		const a: InDomHandler[] = new Array(this.length);
 		for (let i = 0; i < this.length; i++) {
 			a[i] = this[i].on(type as any, fn as any, opts as any);
@@ -385,7 +385,7 @@ export class InDomArray extends Array<InDom> {
 	 * @throws {Error} If any element is disconnected or DOM not ready
 	 */
 	onRemove(fn: (n: InDom) => void): InDomHandler[] {
-		this.#isConnected();
+		this.#ensureConnected();
 		const a: InDomHandler[] = [];
 		this.forEach(n => a.push(n.onRemove(fn)));
 		return a;
@@ -466,7 +466,7 @@ export class InDomArray extends Array<InDom> {
 	 * @private
 	 * @throws {Error} If DOM not ready or any element disconnected
 	 */
-	#isConnected(): void {
+	#ensureConnected(): void {
 		if (!InDom.isReady()) {
 			throw new Error('DOM content must be loaded first for this operation');
 		}
@@ -1068,7 +1068,7 @@ export class InDom {
 		fn?: (n: InDom, e: Event) => void,
 		opts: AddEventListenerOptions = {}
 	): InDomHandler {
-		this.#isConnected();
+		this.#ensureConnected();
 
 		// normalize + validate
 		const types = Array.isArray(type) ? type : [type];
@@ -1301,7 +1301,7 @@ export class InDom {
 	 * @throws {Error} If element is already removed
 	 */
 	onRemove(fn: (n: InDom) => void): InDomHandler {
-		this.#isConnected();
+		this.#ensureConnected();
 		if (typeof fn !== 'function') {
 			throw new TypeError('Remove event handler must be a function', { cause: fn });
 		}
@@ -1444,7 +1444,7 @@ export class InDom {
 	 * @throws {Error} If the element is not connected or removed
 	 */
 	getData(k: any): any {
-		this.#isConnected();
+		this.#ensureConnected();
 		const attrName = 'data-' + String(k);
 		if (this.hasAttr(attrName)) {
 			return this.getAttr(attrName);
@@ -1463,7 +1463,7 @@ export class InDom {
 	 * @throws {Error} If the element is not connected or removed
 	 */
 	setData(k: any, v: any): this {
-		this.#isConnected();
+		this.#ensureConnected();
 		const attrName = 'data-' + String(k);
 		if (this.hasAttr(attrName)) {
 			this.setAttr(attrName, v);
@@ -1483,7 +1483,7 @@ export class InDom {
 	 * @throws {Error} If the element is not connected or removed
 	 */
 	removeData(k: any): this {
-		this.#isConnected();
+		this.#ensureConnected();
 		const attrName = 'data-' + String(k);
 		if (this.hasAttr(attrName)) {
 			this.removeAttr(attrName);
@@ -1671,9 +1671,10 @@ export class InDom {
 	 *
 	 * @returns {DOMRect} Object with left / x, top / y, width, height, right, bottom
 	 * @throws {Error} If the underlying element has been removed
+	 * @throws {Error} if the element is not connected to the document , or document not yet loaded
 	 */
 	getBox(): DOMRect {
-		this.#checkElement();
+		this.#ensureConnected();
 		return (this.#el as Element).getBoundingClientRect();
 	}
 
@@ -1682,9 +1683,10 @@ export class InDom {
 	 *
 	 * @returns {DOMRect} Object with left / x, top / y, width, height, right, bottom
 	 * @throws {Error} If the underlying element has been removed
+	 * @throws {Error} if the element is not connected to the document , or document not yet loaded
 	 */
 	getOuterBox(): DOMRect {
-		this.#checkElement();
+		this.#ensureConnected();
 		const el = this.#el as HTMLElement;
 		const box = el.getBoundingClientRect();
 		const style = window.getComputedStyle(el);
@@ -1708,9 +1710,10 @@ export class InDom {
 	 *
 	 * @returns {DOMRect} Object with left / x, top / y, width, height, right, bottom
 	 * @throws {Error} If the underlying element has been removed
+	 * @throws {Error} if the element is not connected to the document , or document not yet loaded
 	 */
 	getRelativeBox(): DOMRect {
-		this.#checkElement();
+		this.#ensureConnected();
 		const el = this.#el as HTMLElement;
 		const box = el.getBoundingClientRect();
 
@@ -1727,6 +1730,28 @@ export class InDom {
 		return new DOMRect(
 			box.left - offsetX,
 			box.top - offsetY,
+			box.width,
+			box.height
+		);
+	}
+	
+	/**
+	 * Returns a DOMRect with page-relative coordinates (viewport rect plus window scroll),
+	 * left/top are measured from the document origin and root borders are excluded.
+	 * 
+	 * @returns {DOMRect} Object with left / x, top / y, width, height, right, bottom.
+	 * @throws {Error} If the underlying element has been removed
+	 * @throws {Error} if the element is not connected to the document , or document not yet loaded
+	 */
+	getOffsetBox(): DOMRect {
+		this.#ensureConnected();
+		const el = this.#el as HTMLElement;
+		const box = el.getBoundingClientRect();
+		const doc = el.ownerDocument.documentElement;
+		const win = el.ownerDocument.defaultView!;
+		return new DOMRect(
+			box.left + win.scrollX - doc.clientLeft,
+			box.top  + win.scrollY - doc.clientTop,
 			box.width,
 			box.height
 		);
@@ -1927,7 +1952,7 @@ export class InDom {
 	 * @private
 	 * @throws {Error} If DOM not ready or element is not connected
 	 */
-	#isConnected(): void {
+	#ensureConnected(): void {
 		if (!InDom.#ready) {
 			throw new Error('DOM content must be loaded first for this operation');
 		}
