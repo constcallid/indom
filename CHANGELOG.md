@@ -31,3 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Geometry methods (`getBox`, `getOuterBox`, `getRelativeBox`, `getOffsetBox`) now require the underlying element to be connected to the DOM, they throw Error otherwise.
 
+## [1.0.5] - 2025-03-05
+### Changed
+- More tests for new geometry method (and npm package fix) 
+

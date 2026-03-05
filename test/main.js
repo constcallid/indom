@@ -767,6 +767,23 @@ InDom.onReady(() => {
 		//DOMRect {"x":30,"y":10,"width":30,"height":50,"top":10,"right":60,"bottom":60,"left":30}
 		// red innerDiv: positioned inside blue div; coords are relative to blue’s padding box
 	}
+	
+	const getOffsetBoxExample = () => {
+
+		const div = $n('<div></div>');
+		div.setStyle({
+			position: 'absolute',
+			top: '100px',
+			left: '120px',
+			width: '80px',
+			height: '60px'
+		});
+		$1('body').append(div);
+
+		console.log(JSON.stringify(div.getOffsetBox()));
+		//DOMRect {"x":120,"y":100,"width":80,"height":60,"top":100,"right":200,"bottom":160,"left":120}
+
+	}
 
 	const classExample = () => {
 
